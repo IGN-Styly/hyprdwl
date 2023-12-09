@@ -1,5 +1,6 @@
 pkg
-src
+*.sh
 split-monitor-workspaces
 Hyprland
 *.tar.zst
+

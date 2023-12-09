@@ -1,6 +1,6 @@
 # Maintainer: Styly <claudioresendeptbr@gmail.com>
-pkgname=hyprdwl
-pkgver=0.1
+pkgname=hyprdwl-git
+pkgver=0.2.1
 pkgrel=1
 pkgdesc="Split monitor workspaces for Hyprland, so it can be just like dwm"
 arch=('x86_64')
@@ -60,7 +60,7 @@ sha256sums=('SKIP'
 
 
 prepare() {
-    export HYPRLAND_HEADERS="$HOME/repos/Hyprland"
+    export HYPRLAND_HEADERS="$srcdir/Hyprland"
 }
 
 build() {
@@ -69,6 +69,7 @@ build() {
   echo "Add 'exec-once=hyprctl plugin load /usr/lib/split-monitor-workspaces.so' to your hyprland config."
 }
 package(){
-  cd split-monitor-workspaces
-  install -Dm0775 ./split-monitor-workspaces.so "$pkgdir/usr/lib/split-monitor-workspaces.so"
+  install -Dm0775 "$srcdir/split-monitor-workspaces/split-monitor-workspaces.so" "$pkgdir/usr/lib/split-monitor-workspaces.so"
+  install -Dm0775 "$srcdir/hyprdwl.hook" "$pkgdir/etc/pacman.d/hooks/hyperdwl.hook"
 }
+
